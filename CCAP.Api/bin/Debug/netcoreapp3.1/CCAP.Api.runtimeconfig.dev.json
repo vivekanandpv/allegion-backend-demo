@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/vivekanandpv/.dotnet/store/|arch|/|tfm|",
+      "/Users/vivekanandpv/.nuget/packages"
+    ]
+  }
+}
