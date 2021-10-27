@@ -74,6 +74,10 @@
               "target": "Package",
               "version": "[6.8.0, )"
             },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
             "SimpleCrypto.NetCore": {
               "target": "Package",
               "version": "[1.0.0, )"

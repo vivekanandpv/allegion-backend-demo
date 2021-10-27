@@ -62,3 +62,5 @@
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/obj/Debug/netcoreapp3.1/CCAP.Api.csproj.CopyComplete
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Npgsql.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll

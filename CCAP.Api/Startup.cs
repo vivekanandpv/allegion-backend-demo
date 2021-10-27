@@ -26,7 +26,7 @@ namespace CCAP.Api {
             services.AddControllers();
 
             services.AddDbContext<CCAPContext>(options => {
-                options.UseSqlServer(_configuration.GetConnectionString("SqlServer"));
+                options.UseNpgsql(_configuration.GetConnectionString("PostgreSQL"));
             });
 
             services.AddScoped<IAuthService, AuthService>();

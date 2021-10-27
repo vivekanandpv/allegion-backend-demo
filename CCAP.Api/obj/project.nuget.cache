@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "X9zC1pMaDpTgJgRJRjybUVQzpaRFRHr/J5RoeNSEJF2pS32IIPSDcVaShVfKC1Gz8l35NCFJaH8MShXRkavb+g==",
+  "dgSpecHash": "91cRGwQO+YjlTyDI2KOee0//lO93xrJVY4BDt5pz89nGXr1k5HT8UoHIZYv6FLvmlwKUgk965HAKWkmVxwI8+Q==",
   "success": true,
   "projectFilePath": "/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/CCAP.Api.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,8 @@
     "/Users/vivekanandpv/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/netstandard.library/1.6.0/netstandard.library.1.6.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/newtonsoft.json/10.0.1/newtonsoft.json.10.0.1.nupkg.sha512",
+    "/Users/vivekanandpv/.nuget/packages/npgsql/5.0.10/npgsql.5.0.10.nupkg.sha512",
+    "/Users/vivekanandpv/.nuget/packages/npgsql.entityframeworkcore.postgresql/5.0.10/npgsql.entityframeworkcore.postgresql.5.0.10.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/runtime.native.system.io.compression/4.1.0/runtime.native.system.io.compression.4.1.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/runtime.native.system.net.http/4.0.1/runtime.native.system.net.http.4.0.1.nupkg.sha512",
@@ -90,6 +92,7 @@
     "/Users/vivekanandpv/.nuget/packages/system.resources.resourcemanager/4.3.0/system.resources.resourcemanager.4.3.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/system.runtime/4.3.0/system.runtime.4.3.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/system.runtime.caching/4.7.0/system.runtime.caching.4.7.0.nupkg.sha512",
+    "/Users/vivekanandpv/.nuget/packages/system.runtime.compilerservices.unsafe/4.6.0/system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/system.runtime.extensions/4.3.0/system.runtime.extensions.4.3.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/system.runtime.handles/4.3.0/system.runtime.handles.4.3.0.nupkg.sha512",
     "/Users/vivekanandpv/.nuget/packages/system.runtime.interopservices/4.3.0/system.runtime.interopservices.4.3.0.nupkg.sha512",
