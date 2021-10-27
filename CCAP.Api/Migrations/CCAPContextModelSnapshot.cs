@@ -50,11 +50,20 @@ namespace CCAP.Api.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsForcedToResetPassword")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsLocked")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsStaff")
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text");
+
+                    b.Property<int>("NWrongAttempts")
+                        .HasColumnType("integer");
 
                     b.Property<byte[]>("PasswordHash")
                         .HasColumnType("bytea");

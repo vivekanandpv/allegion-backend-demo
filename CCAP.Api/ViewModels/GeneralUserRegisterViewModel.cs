@@ -9,7 +9,7 @@ namespace CCAP.Api.ViewModels {
         [Required, EmailAddress]
         public string Email { get; set; }
         
-        [Required, RegularExpression(pattern:"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!#$%&? \"]).*$", ErrorMessage = "Minimum 8 characters, must contain a digit, a special character, and a capital letter")]
+        [Required, RegularExpression(pattern:"^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%&? \"]).*$", ErrorMessage = "Minimum 8 characters, must contain a digit, a special character, and a capital letter")]
         public string Password { get; set; }
     }
 }

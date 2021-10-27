@@ -12,6 +12,9 @@ namespace CCAP.Api.Models {
         public byte[] PasswordSalt { get; set; }
         public DateTime CreatedOn { get; set; }
         public bool IsStaff { get; set; }
+        public bool IsForcedToResetPassword { get; set; }
+        public int NWrongAttempts { get; set; }
+        public bool IsLocked { get; set; }
 
         public IList<AppUserRole> AppUserRoles { get; set; } = new List<AppUserRole>();
     }

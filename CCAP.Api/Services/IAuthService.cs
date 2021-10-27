@@ -7,5 +7,8 @@ namespace CCAP.Api.Services {
         Task Register(StaffUserRegisterViewModel viewModel);
         Task<TokenViewModel> Login(LoginViewModel viewModel);
         bool Exists(string email);
+        Task ChangePassword(ChangePasswordViewModel viewModel);
+        Task<ResetKeyViewModel> ResetForUser(string username);
+        Task ResetPassword(ResetPasswordViewModel viewModel);
     }
 }

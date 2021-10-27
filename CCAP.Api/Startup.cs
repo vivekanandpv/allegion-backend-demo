@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CCAP.Api.DataAccess;
+using CCAP.Api.Filters;
 using CCAP.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +27,9 @@ namespace CCAP.Api {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services) {
-            services.AddControllers();
+            services.AddControllers(options => {
+                options.Filters.Add(new GeneralExceptionHandlerFilter());
+            });
 
             services.AddDbContext<CCAPContext>(options => {
                 options.UseNpgsql(_configuration.GetConnectionString("PostgreSQL"));
