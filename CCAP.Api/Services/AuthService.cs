@@ -202,6 +202,11 @@ namespace CCAP.Api.Services {
             if (!Exists(viewModel.Username)) {
                 throw new LoginFailedException($"Cannot process reset for the non-existent user: {viewModel.Username}");
             }
+            
+            if (viewModel.NewPassword != viewModel.ConfirmNewPassword) {
+                throw new DomainValidationException(
+                    $"New passwords do not match for the reset password of user {viewModel.Username}");
+            }
 
             //  check if the reset key is right
             var userDb = await _context.AppUsers.FirstOrDefaultAsync(u => u.Email == viewModel.Username);
@@ -221,11 +226,6 @@ namespace CCAP.Api.Services {
 
             await RegisterCorrectLogin(userDb);
 
-            if (viewModel.NewPassword != viewModel.ConfirmNewPassword) {
-                throw new DomainValidationException(
-                    $"New passwords do not match for the reset password of user {viewModel.Username}");
-            }
-            
             //  replace the hash and salt
             CreatePasswordHash(viewModel.NewPassword, out var passwordHash, out var passwordSalt);
             userDb.PasswordHash = passwordHash;
