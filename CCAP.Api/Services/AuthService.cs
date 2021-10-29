@@ -154,6 +154,7 @@ namespace CCAP.Api.Services {
                 VerifyPassword(viewModel.CurrentPassword, userDb.PasswordHash, userDb.PasswordSalt);
 
             if (!currentPasswordResult) {
+                await RegisterWrongLogin(userDb);
                 throw new LoginFailedException(
                     $"Change password prevented for the user: {viewModel.Username}, as the current password doesn't match");
             }

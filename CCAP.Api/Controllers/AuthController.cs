@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using CCAP.Api.Services;
+using CCAP.Api.Utils;
 using CCAP.Api.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,7 @@ namespace CCAP.Api.Controllers {
             return Ok();
         }
         
-        // [Authorize(Policy = "Admin")]
+        [Authorize(Policy = StaticProvider.AdminPolicy)]
         [HttpPost("register-staff")]
         public async Task<IActionResult> RegisterUser(StaffUserRegisterViewModel viewModel) {
             await _authService.Register(viewModel);
@@ -40,7 +41,7 @@ namespace CCAP.Api.Controllers {
             return Ok();
         }
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = StaticProvider.AdminPolicy)]
         [HttpGet("reset-user/{username}")]
         public async Task<ActionResult<ResetKeyViewModel>> ResetUser(string username) {
             return Ok(await _authService.ResetForUser(username));

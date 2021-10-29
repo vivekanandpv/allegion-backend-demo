@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CCAP.Api.DataAccess;
 using CCAP.Api.Filters;
 using CCAP.Api.Services;
+using CCAP.Api.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +33,17 @@ namespace CCAP.Api {
             });
 
             services.AddDbContext<CCAPContext>(options => {
-                options.UseNpgsql(_configuration.GetConnectionString("PostgreSQL"));
+                options.UseNpgsql(_configuration.GetConnectionString(StaticProvider.PostgreSQLConnection));
+            });
+
+            services.AddCors(options => {
+                options.AddPolicy(StaticProvider.FrontendCorsPolicy, builder => {
+                    builder.WithOrigins(
+                            _configuration.GetSection(StaticProvider.AllowedOrigins).Get<string[]>()
+                            )
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
             });
 
             services.AddScoped<IAuthService, AuthService>();
@@ -49,10 +60,10 @@ namespace CCAP.Api {
                 });
 
             services.AddAuthorization(options => {
-                options.AddPolicy("User", policy => policy.RequireClaim("Roles", "user"));
-                options.AddPolicy("Approver", policy => policy.RequireClaim("Roles", "approver"));
-                options.AddPolicy("Issuer", policy => policy.RequireClaim("Roles", "issuer"));
-                options.AddPolicy("Admin", policy => policy.RequireClaim("Roles", "admin"));
+                options.AddPolicy(StaticProvider.UserPolicy, policy => policy.RequireClaim("Roles", "user"));
+                options.AddPolicy(StaticProvider.ApproverPolicy, policy => policy.RequireClaim("Roles", "approver"));
+                options.AddPolicy(StaticProvider.IssuerPolicy, policy => policy.RequireClaim("Roles", "issuer"));
+                options.AddPolicy(StaticProvider.AdminPolicy, policy => policy.RequireClaim("Roles", "admin"));
             });
         }
 
@@ -61,6 +72,8 @@ namespace CCAP.Api {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(StaticProvider.FrontendCorsPolicy);
 
             app.UseAuthentication();
 
