@@ -3,15 +3,17 @@ using System;
 using CCAP.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CCAP.Api.Migrations
 {
     [DbContext(typeof(CCAPContext))]
-    partial class CCAPContextModelSnapshot : ModelSnapshot
+    [Migration("20211029073659_ModifiedBusinessDomain")]
+    partial class ModifiedBusinessDomain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,9 +262,6 @@ namespace CCAP.Api.Migrations
 
                     b.Property<string>("EmploymentStatus")
                         .HasColumnType("text");
-
-                    b.Property<int>("LimitRequired")
-                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

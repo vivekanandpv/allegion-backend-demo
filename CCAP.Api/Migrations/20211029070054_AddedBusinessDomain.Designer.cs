@@ -3,15 +3,17 @@ using System;
 using CCAP.Api.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CCAP.Api.Migrations
 {
     [DbContext(typeof(CCAPContext))]
-    partial class CCAPContextModelSnapshot : ModelSnapshot
+    [Migration("20211029070054_AddedBusinessDomain")]
+    partial class AddedBusinessDomain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,6 +254,9 @@ namespace CCAP.Api.Migrations
                     b.Property<int>("AnnualIncome")
                         .HasColumnType("integer");
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("CreditCardId")
                         .HasColumnType("integer");
 
@@ -261,10 +266,9 @@ namespace CCAP.Api.Migrations
                     b.Property<string>("EmploymentStatus")
                         .HasColumnType("text");
 
-                    b.Property<int>("LimitRequired")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("CreditCardId");
 
@@ -333,11 +337,19 @@ namespace CCAP.Api.Migrations
 
             modelBuilder.Entity("CCAP.Api.Models.CreditCardApplication", b =>
                 {
+                    b.HasOne("CCAP.Api.Models.AppUser", "AppUser")
+                        .WithMany("Applications")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CCAP.Api.Models.CreditCard", "CreditCard")
                         .WithMany("Applications")
                         .HasForeignKey("CreditCardId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("CreditCard");
                 });
@@ -350,6 +362,8 @@ namespace CCAP.Api.Migrations
             modelBuilder.Entity("CCAP.Api.Models.AppUser", b =>
                 {
                     b.Navigation("Addresses");
+
+                    b.Navigation("Applications");
 
                     b.Navigation("AppUserRoles");
 

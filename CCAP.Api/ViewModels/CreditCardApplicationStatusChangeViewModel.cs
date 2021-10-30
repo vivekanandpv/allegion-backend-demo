@@ -7,7 +7,7 @@ namespace CCAP.Api.ViewModels {
         [Required]
         public int CreditCardApplicationId { get; set; }
         [Required]
-        public int AppUserId { get; set; }
+        public string Username { get; set; }
         [MaxLength(100)]
         public string Remarks { get; set; }
     }
