@@ -16,6 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace CCAP.Api {
     public class Startup {
@@ -66,6 +67,27 @@ namespace CCAP.Api {
                 options.AddPolicy(StaticProvider.AdminPolicy, policy => policy.RequireClaim("Roles", "admin"));
                 options.AddPolicy(StaticProvider.StaffPolicy, policy => policy.RequireClaim("Roles", new string[] {"approver", "issuer"}));
             });
+            
+            services.AddSwaggerGen(config =>
+            {
+                config.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Credit Card Application Processing",
+                    Description = "Processing the credit card applications for the bank",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "John Doe",
+                        Email = "john.doe@domain.com",
+                        Url = new Uri("http://domain.com/john.doe"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT Licence",
+                        Url = new Uri("http://domain.com/license"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,8 +95,15 @@ namespace CCAP.Api {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseCors(StaticProvider.FrontendCorsPolicy);
+
+            app.UseSwagger();
+            
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Demo App");
+            });
 
             app.UseAuthentication();
 

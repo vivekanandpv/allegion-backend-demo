@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CCAP.Api.Services;
 using CCAP.Api.Utils;
@@ -24,19 +25,19 @@ namespace CCAP.Api.Controllers {
 
         [Authorize(Policy = StaticProvider.StaffPolicy)]
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id) {
+        public async Task<ActionResult<CreditCardApplicationReportViewModel>> Get(int id) {
             return Ok(await _service.GetApplication(id));
         }
 
         [Authorize(Policy = StaticProvider.ApproverPolicy)]
         [HttpGet("get-approver-queue")]
-        public async Task<IActionResult> GetPendingApproval() {
+        public async Task<ActionResult<IEnumerable<CreditCardApplicationViewModel>>> GetPendingApproval() {
             return Ok(await _service.GetPendingApproval());
         }
 
         [Authorize(Policy = StaticProvider.IssuerPolicy)]
         [HttpGet("get-issuer-queue")]
-        public async Task<IActionResult> GetPendingIssuance() {
+        public async Task<ActionResult<IEnumerable<CreditCardApplicationViewModel>>> GetPendingIssuance() {
             return Ok(await _service.GetPendingIssuance());
         }
 
@@ -63,13 +64,13 @@ namespace CCAP.Api.Controllers {
 
         [Authorize(Policy = StaticProvider.ApproverPolicy)]
         [HttpGet("get-approver-statistics")]
-        public async Task<IActionResult> GetApproverStatistics() {
+        public async Task<ActionResult<ApproverStatisticsViewModel>> GetApproverStatistics() {
             return Ok(await _service.GetApproverStatistics());
         }
 
         [Authorize(Policy = StaticProvider.IssuerPolicy)]
         [HttpGet("get-issuer-statistics")]
-        public async Task<IActionResult> GetIssuerStatistics() {
+        public async Task<ActionResult<IssuerStaticsViewModel>> GetIssuerStatistics() {
             return Ok(await _service.GetIssuerStatistics());
         }
     }

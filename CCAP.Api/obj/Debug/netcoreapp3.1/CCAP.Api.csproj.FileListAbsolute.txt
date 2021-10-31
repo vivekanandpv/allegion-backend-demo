@@ -64,3 +64,8 @@
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/obj/Debug/netcoreapp3.1/CCAP.Api.csproj.CopyComplete
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Npgsql.dll
 /Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/vivekanandpv/RiderProjects/CCAP.Api/CCAP.Api/obj/Debug/netcoreapp3.1/CCAP.Api.MvcApplicationPartsAssemblyInfo.cs

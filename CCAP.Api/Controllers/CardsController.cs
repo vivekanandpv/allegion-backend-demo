@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CCAP.Api.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -15,12 +16,12 @@ namespace CCAP.Api.Controllers {
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get() {
+        public async Task<ActionResult<IEnumerable<CreditCardDisplayViewModel>>> Get() {
             return Ok(await _service.Get());
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id) {
+        public async Task<ActionResult<CreditCardDisplayViewModel>> Get(int id) {
             return Ok(await _service.Get(id));
         }
     }
