@@ -144,6 +144,22 @@ namespace CCAP.Api.Services {
             return await _context.ApplicationStatusList.CountAsync(a => a.Status == StatusType.Issued);
         }
 
+        public async Task<ApproverStatisticsViewModel> GetApproverStatistics() {
+            return new ApproverStatisticsViewModel {
+                TotalApplications = await GetTotalApplications(),
+                TotalApproved = await GetTotalApproved(),
+                TotalPendingApproval = await GetTotalPendingApproval(),
+                TotalRejected = await GetTotalRejected()
+            };
+        }
+
+        public async Task<IssuerStaticsViewModel> GetIssuerStatistics() {
+            return new IssuerStaticsViewModel {
+                TotalIssued = await GetTotalIssued(),
+                TotalPendingIssuance = await GetTotalPendingIssuance()
+            };
+        }
+
         //  implementation details
         private async Task<bool> IsFreshApplication(int id) {
             //  make sure the application exists

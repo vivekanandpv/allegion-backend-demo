@@ -67,6 +67,19 @@ namespace CCAP.Api.Filters {
                 context.ExceptionHandled = true;
             }
             
+            if (context.Exception is RecordNotFoundException) {
+                // log it here to logging framework
+                // _logger.LogError($"LOG: {context.Exception.Message}");
+                Console.WriteLine($"LOG: {context.Exception.Message}");
+                context.Result = new ObjectResult(
+                    new { Message = $"Could not find the required record: {context.Exception.Message}" }
+                ) {
+                    StatusCode = 400
+                };
+
+                context.ExceptionHandled = true;
+            }
+            
             //  general
             if (!context.ExceptionHandled && context.Exception != null) {
                 // log it here to logging framework

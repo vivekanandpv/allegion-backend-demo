@@ -64,6 +64,7 @@ namespace CCAP.Api {
                 options.AddPolicy(StaticProvider.ApproverPolicy, policy => policy.RequireClaim("Roles", "approver"));
                 options.AddPolicy(StaticProvider.IssuerPolicy, policy => policy.RequireClaim("Roles", "issuer"));
                 options.AddPolicy(StaticProvider.AdminPolicy, policy => policy.RequireClaim("Roles", "admin"));
+                options.AddPolicy(StaticProvider.StaffPolicy, policy => policy.RequireClaim("Roles", new string[] {"approver", "issuer"}));
             });
         }
 

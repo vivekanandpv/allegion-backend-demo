@@ -12,7 +12,8 @@ namespace CCAP.Api.Utils {
         public const string AdminPolicy = "Admin";
         public const string ApproverPolicy = "Approver";
         public const string IssuerPolicy = "Issuer";
-        
+        public const string StaffPolicy = "Staff";
+
         public static string GetRandomPassword(int length) {
             var random = new Random();
             var sb = new StringBuilder();

@@ -22,5 +22,8 @@ namespace CCAP.Api.Services {
         Task<int> GetTotalApproved();
         Task<int> GetTotalRejected();
         Task<int> GetTotalIssued();
+
+        Task<ApproverStatisticsViewModel> GetApproverStatistics();
+        Task<IssuerStaticsViewModel> GetIssuerStatistics();
     }
 }
