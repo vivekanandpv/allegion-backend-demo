@@ -48,6 +48,8 @@ namespace CCAP.Api {
             });
 
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICreditCardApplicationService, CreditCardApplicationService>();
+            services.AddScoped<ICreditCardService, CreditCardService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
