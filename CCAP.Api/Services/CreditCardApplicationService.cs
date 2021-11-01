@@ -15,7 +15,7 @@ namespace CCAP.Api.Services {
         public CreditCardApplicationService(CCAPContext context) {
             _context = context;
         }
-        
+
         public async Task Register(CreditCardApplicationCreateViewModel viewModel) {
             await UpdateUserProfile(viewModel);
             var applicationDb = await CreateNewCreditCardApplication(viewModel);
@@ -29,13 +29,15 @@ namespace CCAP.Api.Services {
             await ChangeApplicationStatus(changeStatusViewModel, StatusType.Submitted, (id) => Task.FromResult(true));
         }
 
-        public async Task<List<CreditCardApplicationViewModel>> GetPendingApproval() {
-            return await _context
+        public async Task<IEnumerable<CreditCardApplicationViewModel>> GetPendingApproval() {
+            var list = await _context
                 .CreditCardApplications
                 .Include(a => a.CreditCard)
                 .Include(a => a.StatusList)
                 .ThenInclude(s => s.AppUser)
-                .Where(a => IsFreshApplication(a))
+                .ToListAsync();
+
+            return list.Where(IsFreshApplication)
                 .Select(a => new CreditCardApplicationViewModel {
                     CardCode = a.CreditCard.CardCode,
                     CardDescription = $"{a.CreditCard.Category}/{a.CreditCard.SubType}",
@@ -47,17 +49,19 @@ namespace CCAP.Api.Services {
                     Id = a.Id,
                     ImageUrl = a.CreditCard.ImageUrl,
                     LimitRequired = a.LimitRequired,
-                })
-                .ToListAsync();
+                });
         }
 
-        public async Task<List<CreditCardApplicationViewModel>> GetPendingIssuance() {
-            return await _context
+        public async Task<IEnumerable<CreditCardApplicationViewModel>> GetPendingIssuance() {
+            var list = await _context
                 .CreditCardApplications
                 .Include(a => a.CreditCard)
                 .Include(a => a.StatusList)
                 .ThenInclude(s => s.AppUser)
-                .Where(a => CanBeIssued(a))
+                .ToListAsync();
+
+            return list
+                .Where(CanBeIssued)
                 .Select(a => new CreditCardApplicationViewModel {
                     CardCode = a.CreditCard.CardCode,
                     CardDescription = $"{a.CreditCard.Category}/{a.CreditCard.SubType}",
@@ -69,15 +73,14 @@ namespace CCAP.Api.Services {
                     Id = a.Id,
                     ImageUrl = a.CreditCard.ImageUrl,
                     LimitRequired = a.LimitRequired
-                })
-                .ToListAsync();
+                });
         }
 
         public async Task<CreditCardApplicationReportViewModel> GetApplication(int id) {
             var applicationDb = await GetOriginalApplication(id);
             var customerDb = GetCustomer(applicationDb);
             var communicationAddress = GetCommunicationAddress(customerDb);
-            
+
             //  create the view model and return
             return new CreditCardApplicationReportViewModel {
                 CustomerId = customerDb.Id,
@@ -222,7 +225,7 @@ namespace CCAP.Api.Services {
             var userDb = await _context.AppUsers
                 .Include(u => u.Addresses)
                 .FirstOrDefaultAsync(u => u.Email == username);
-            
+
             if (userDb == null) {
                 throw new RecordNotFoundException($"User: {username} is not found");
             }

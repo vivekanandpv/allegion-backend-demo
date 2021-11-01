@@ -8,8 +8,8 @@ namespace CCAP.Api.Services {
         Task Register(CreditCardApplicationCreateViewModel viewModel);
         
         //  for staff
-        Task<List<CreditCardApplicationViewModel>> GetPendingApproval();
-        Task<List<CreditCardApplicationViewModel>> GetPendingIssuance();
+        Task<IEnumerable<CreditCardApplicationViewModel>> GetPendingApproval();
+        Task<IEnumerable<CreditCardApplicationViewModel>> GetPendingIssuance();
         Task<CreditCardApplicationReportViewModel> GetApplication(int id);
         Task Approve(CreditCardApplicationStatusChangeViewModel viewModel);
         Task Reject(CreditCardApplicationStatusChangeViewModel viewModel);
