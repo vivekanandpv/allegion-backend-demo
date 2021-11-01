@@ -46,7 +46,7 @@ namespace CCAP.Api.Services {
                     Status = StatusType.Submitted,
                     Id = a.Id,
                     ImageUrl = a.CreditCard.ImageUrl,
-                    LimitRequired = a.LimitRequired
+                    LimitRequired = a.LimitRequired,
                 })
                 .ToListAsync();
         }

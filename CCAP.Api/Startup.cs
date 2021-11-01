@@ -97,6 +97,8 @@ namespace CCAP.Api {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
             
             app.UseCors(StaticProvider.FrontendCorsPolicy);
 

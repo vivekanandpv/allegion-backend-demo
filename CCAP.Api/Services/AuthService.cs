@@ -288,7 +288,11 @@ namespace CCAP.Api.Services {
                 return false;
             }
 
-            Console.WriteLine($"Cannot allow the user: {username} as the user is locked");
+            if (userDb.IsLocked) {
+                Console.WriteLine($"Cannot allow the user: {username} as the user is locked");
+
+            }
+
             return !userDb.IsLocked;
         }
 
